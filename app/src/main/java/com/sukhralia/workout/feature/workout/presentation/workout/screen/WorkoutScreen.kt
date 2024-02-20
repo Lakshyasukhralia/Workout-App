@@ -30,15 +30,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.sukhralia.workout.R
-import com.sukhralia.workout.feature.workout.presentation.exercise.screen.ExerciseScreen
+import com.sukhralia.workout.feature.BaseScreen
+import com.sukhralia.workout.feature.workout.presentation.exerciselisting.screen.ExerciseListingScreen
 import com.sukhralia.workout.feature.workout.presentation.workout.component.RoundedTextField
 import com.sukhralia.workout.feature.workout.presentation.workout.component.WorkoutItem
 
-class WorkoutScreen : Screen {
+class WorkoutScreen : BaseScreen() {
 
     @Preview
     @Composable
@@ -60,12 +60,18 @@ class WorkoutScreen : Screen {
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(.5.dp, Color.Gray, RoundedCornerShape(24.dp)),
-                onValueChange = { screenModel.getWorkouts(it) }
+                onValueChange = {
+                    uiState.searchQuery = it
+                    screenModel.getWorkouts(uiState.searchQuery)
+                },
+                text = uiState.searchQuery
             )
             Spacer(modifier = Modifier.height(12.dp))
             LazyColumn(Modifier.fillMaxSize()) {
                 items(uiState.workouts) { workout ->
-                    WorkoutItem(workout, onClick = { navigator.push(ExerciseScreen(workout)) })
+                    WorkoutItem(
+                        workout,
+                        onClick = { navigator.push(ExerciseListingScreen(workout)) })
                 }
             }
         }

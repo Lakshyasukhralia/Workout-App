@@ -1,8 +1,9 @@
-package com.sukhralia.workout.feature.workout.presentation.exercise.screen
+package com.sukhralia.workout.feature.workout.presentation.exerciselisting.screen
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.sukhralia.workout.core.network.errors.NetworkException
+import com.sukhralia.workout.feature.workout.domain.model.Workout
 import com.sukhralia.workout.feature.workout.domain.repository.WorkoutRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,12 +12,17 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class ExerciseScreenModel : ScreenModel, KoinComponent {
+class ExerciseListingScreenModel(val workout: Workout = Workout()) : ScreenModel, KoinComponent {
 
-    private var _uiState = MutableStateFlow(ExerciseState())
+    private var _uiState = MutableStateFlow(ExerciseListingState())
     val uiState = _uiState.asStateFlow()
 
     private val workoutRepository by inject<WorkoutRepository>()
+
+    init {
+        if (workout.name == "All") workout.id = null
+        getExercises(workout.id)
+    }
 
     fun getExercises(workoutId: String? = "", searchQuery: String? = "") {
 

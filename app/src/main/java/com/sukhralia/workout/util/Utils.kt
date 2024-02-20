@@ -1,5 +1,15 @@
 package com.sukhralia.workout.util
 
+import android.os.SystemClock
+import androidx.compose.foundation.clickable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+
 fun String.convertToNumberedPoints(): String {
     val lines = this.trimIndent().lines()
     val numberedPoints = StringBuilder()
@@ -10,4 +20,30 @@ fun String.convertToNumberedPoints(): String {
     }
 
     return numberedPoints.toString().trim()
+}
+
+@Composable
+inline fun debounced(crossinline onClick: () -> Unit, debounceTime: Long = 1000L): () -> Unit {
+    var lastTimeClicked by remember { mutableStateOf(0L) }
+    val onClickLambda: () -> Unit = {
+        val now = SystemClock.uptimeMillis()
+        if (now - lastTimeClicked > debounceTime) {
+            onClick()
+        }
+        lastTimeClicked = now
+    }
+    return onClickLambda
+}
+
+/**
+ * The same as [Modifier.clickable] with support to debouncing.
+ */
+fun Modifier.debouncedClickable(
+    debounceTime: Long = 1000L,
+    onClick: () -> Unit
+): Modifier {
+    return this.composed {
+        val clickable = debounced(debounceTime = debounceTime, onClick = { onClick() })
+        this.clickable { clickable() }
+    }
 }

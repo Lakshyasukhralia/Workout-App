@@ -1,4 +1,4 @@
-package com.sukhralia.workout.feature.workout.presentation.exercise.component
+package com.sukhralia.workout.feature.workout.presentation.exerciselisting.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -67,8 +68,10 @@ fun ExerciseItem(exercise: Exercise, onClick: () -> Unit) {
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = exercise.description?.take(100) ?: "",
+                    text = exercise.description ?: "",
                     style = MaterialTheme.typography.bodySmall,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
             Icon(

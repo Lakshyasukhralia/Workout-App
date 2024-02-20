@@ -8,4 +8,4 @@ data class Exercise(
     val categoryId: String? = null,
     val instruction: String? = null,
     val note: String? = null,
-)
+) : java.io.Serializable

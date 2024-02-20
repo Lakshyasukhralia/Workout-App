@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.SlideTransition
 import com.sukhralia.workout.feature.workout.presentation.workout.screen.WorkoutScreen
 import com.sukhralia.workout.ui.theme.WorkoutTheme
 
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigator(WorkoutScreen())
+                    Navigator(WorkoutScreen()) { navigator ->
+                        SlideTransition(navigator)
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gym Monk</string>
+    <string name="app_name">Fitmunk</string>
     <string name="search_workout_label">Search from workouts</string>
     <string name="search_exercise_label">Search from <b>%s</b> exercises</string>
     <string name="instructions">Instructions</string>

@@ -1,4 +1,4 @@
-package com.sukhralia.workout.feature.workout.presentation.exercise.screen
+package com.sukhralia.workout.feature.workout.presentation.exerciselisting.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,25 +35,21 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.sukhralia.workout.R
+import com.sukhralia.workout.feature.BaseScreen
 import com.sukhralia.workout.feature.workout.domain.model.Workout
-import com.sukhralia.workout.feature.workout.presentation.exercise.component.ExerciseItem
+import com.sukhralia.workout.feature.workout.presentation.exerciselisting.component.ExerciseItem
 import com.sukhralia.workout.feature.workout.presentation.exercisedetail.screen.ExerciseDetailScreen
 import com.sukhralia.workout.feature.workout.presentation.workout.component.RoundedTextField
 
-data class ExerciseScreen(val workout: Workout = Workout()) : Screen {
+data class ExerciseListingScreen(val workout: Workout = Workout()) : BaseScreen() {
 
     @Preview
     @Composable
     override fun Content() {
 
         val navigator = LocalNavigator.currentOrThrow
-        val screenModel = rememberScreenModel { ExerciseScreenModel() }
+        val screenModel = rememberScreenModel { ExerciseListingScreenModel(workout) }
         val uiState by screenModel.uiState.collectAsState()
-
-        LaunchedEffect(Unit) {
-            if (workout.name == "All") workout.id = null
-            screenModel.getExercises(workout.id)
-        }
 
         Column(
             Modifier
@@ -69,8 +65,10 @@ data class ExerciseScreen(val workout: Workout = Workout()) : Screen {
                     .border(.5.dp, Color.Gray, RoundedCornerShape(24.dp)),
                 onValueChange = {
                     if (workout.name == "All") workout.id = null
-                    screenModel.getExercises(workout.id, it)
-                }
+                    uiState.searchQuery = it
+                    screenModel.getExercises(workout.id, uiState.searchQuery)
+                },
+                text = uiState.searchQuery
             )
             Spacer(modifier = Modifier.height(12.dp))
             LazyColumn(Modifier.fillMaxSize()) {
