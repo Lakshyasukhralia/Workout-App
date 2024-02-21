@@ -8,12 +8,14 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
@@ -23,7 +25,7 @@ private val DarkColorScheme = darkColorScheme(
     background = Color.Black,
     surface = Color.Black,
     onPrimary = Color.White,
-    inversePrimary = Color.White
+    inversePrimary = Color.Black,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -33,7 +35,7 @@ private val LightColorScheme = lightColorScheme(
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.Black,
-    inversePrimary = Color.Black
+    inversePrimary = Color.White
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -62,6 +64,9 @@ fun WorkoutTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
+
+//    colorScheme.surfaceColorAtElevation(0.dp)
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

@@ -19,7 +19,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -31,14 +30,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.sukhralia.workout.R
-import com.sukhralia.workout.feature.BaseScreen
+import com.sukhralia.workout.navigation.BaseScreen
 import com.sukhralia.workout.feature.workout.domain.model.Workout
-import com.sukhralia.workout.feature.workout.presentation.exerciselisting.component.ExerciseItem
 import com.sukhralia.workout.feature.workout.presentation.exercisedetail.screen.ExerciseDetailScreen
+import com.sukhralia.workout.feature.workout.presentation.exerciselisting.component.ExerciseItem
 import com.sukhralia.workout.feature.workout.presentation.workout.component.RoundedTextField
 
 data class ExerciseListingScreen(val workout: Workout = Workout()) : BaseScreen() {

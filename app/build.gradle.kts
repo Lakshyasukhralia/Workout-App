@@ -12,8 +12,8 @@ android {
         applicationId = "com.sukhralia.workout"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -69,10 +69,14 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+//    val material3 = "1.2.0"
+//    implementation("androidx.compose.material3:material3:$material3")
+
     val voyagerVersion = "1.0.0"
     implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-screenmodel:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+    implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
 
     val coilVersion = "2.5.0"
     implementation("io.coil-kt:coil-compose:$coilVersion")
@@ -93,4 +97,8 @@ dependencies {
     val coroutinesVersion = "1.7.3"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    //Datastore
+    val datastoreVersion = "1.0.0"
+    implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
 }

@@ -5,4 +5,7 @@
     <string name="instructions">Instructions</string>
     <string name="remember">Remember</string>
     <string name="error">Something went wrong :(</string>
+    <string name="workout">Workout</string>
+    <string name="setting">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

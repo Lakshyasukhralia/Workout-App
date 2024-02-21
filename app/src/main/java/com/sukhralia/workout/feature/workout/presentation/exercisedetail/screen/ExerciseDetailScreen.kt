@@ -35,7 +35,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import com.sukhralia.workout.R
-import com.sukhralia.workout.feature.BaseScreen
+import com.sukhralia.workout.navigation.BaseScreen
 import com.sukhralia.workout.feature.workout.domain.model.Exercise
 import com.sukhralia.workout.util.convertToNumberedPoints
 

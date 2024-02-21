@@ -1,5 +1,7 @@
 package com.sukhralia.workout.feature.workout.di
 
+import com.sukhralia.workout.core.persistence.preference.PreferenceRepository
+import com.sukhralia.workout.core.persistence.preference.PreferenceRepositoryImpl
 import com.sukhralia.workout.feature.workout.data.api.WorkoutApi
 import com.sukhralia.workout.feature.workout.data.repository.WorkoutRepositoryImpl
 import com.sukhralia.workout.feature.workout.domain.repository.WorkoutRepository
@@ -11,5 +13,6 @@ val workoutModule: () -> Module
         module {
             single { WorkoutApi(httpClient = get()) }
             single<WorkoutRepository> { WorkoutRepositoryImpl() }
+            single<PreferenceRepository> { PreferenceRepositoryImpl(get()) }
         }
     }

@@ -1,4 +1,4 @@
-package com.sukhralia.workout.feature
+package com.sukhralia.workout.navigation
 
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
