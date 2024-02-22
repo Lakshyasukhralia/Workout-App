@@ -1,6 +1,6 @@
-package com.sukhralia.workout.feature.workout.data.dto
+package com.sukhralia.workout.feature.workout.data.remote.dto
 
-import com.sukhralia.workout.feature.workout.data.api.WorkoutApi.Companion.photoPath
+import com.sukhralia.workout.feature.workout.data.remote.api.WorkoutApi.Companion.photoPath
 import com.sukhralia.workout.feature.workout.domain.model.Workout
 import kotlinx.serialization.Serializable
 

@@ -2,7 +2,7 @@ package com.sukhralia.workout.core.network.helper
 
 import com.sukhralia.workout.core.network.errors.NetworkError
 import com.sukhralia.workout.core.network.errors.NetworkException
-import com.sukhralia.workout.core.network.networkDispatchers
+import com.sukhralia.workout.core.network.coroutineDispatchers
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.utils.io.errors.IOException
@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 suspend inline fun <reified T> handleErrors(
     crossinline response: suspend () -> HttpResponse
-): T = withContext(networkDispatchers.io) {
+): T = withContext(coroutineDispatchers.io) {
 
     val result = try {
         response()

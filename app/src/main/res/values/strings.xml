@@ -6,6 +6,14 @@
     <string name="remember">Remember</string>
     <string name="error">Something went wrong :(</string>
     <string name="workout">Workout</string>
+    <string name="history">History</string>
+    <string name="workout_history_title">Workout History.</string>
     <string name="setting">Settings</string>
+    <string name="setting_title">Settings.</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="weight">Wgt (kg)</string>
+    <string name="reps">Reps</string>
+    <string name="saved_to_logs">Saved to workout history</string>
+    <string name="show">Show</string>
+    <string name="no_history">No history found :(</string>
 </resources>

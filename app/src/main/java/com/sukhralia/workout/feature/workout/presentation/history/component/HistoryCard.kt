@@ -1,4 +1,4 @@
-package com.sukhralia.workout.feature.workout.presentation.exerciselisting.component
+package com.sukhralia.workout.feature.workout.presentation.history.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,11 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,14 +21,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.sukhralia.workout.feature.workout.domain.model.Exercise
+import com.sukhralia.workout.util.formatDateTime
+import java.util.Date
 
 @Composable
-fun ExerciseItem(exercise: Exercise, onClick: () -> Unit) {
+fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
@@ -56,32 +56,50 @@ fun ExerciseItem(exercise: Exercise, onClick: () -> Unit) {
                     contentScale = ContentScale.FillBounds
                 )
             }
+            Spacer(modifier = Modifier.width(18.dp))
             Column(
                 Modifier
                     .align(Alignment.Top)
-                    .weight(7f)
+                    .weight(8f)
                     .padding(horizontal = 8.dp)
+                    .fillMaxSize(),
             ) {
                 Text(
                     text = exercise.name ?: "",
                     style = MaterialTheme.typography.titleMedium.copy(fontSize = 22.sp),
                 )
                 Spacer(modifier = Modifier.weight(1f))
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "${exercise.wgt} kg",
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 22.sp),
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(
+                        modifier = Modifier
+                            .height(24.dp)
+                            .width(2.dp)
+                            .background(MaterialTheme.colorScheme.onPrimary)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "${exercise.reps} reps",
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 22.sp),
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
                 Text(
-                    text = exercise.description ?: "",
+                    text = formatDateTime(exercise.createDate ?: Date()),
                     style = MaterialTheme.typography.bodySmall,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
-            Icon(
-                imageVector = Icons.Filled.KeyboardArrowRight,
-                contentDescription = "Go",
-                modifier = Modifier
-                    .size(42.dp)
-                    .align(Alignment.CenterVertically)
-                    .weight(1f)
-            )
         }
         Spacer(modifier = Modifier.height(12.dp))
         Spacer(

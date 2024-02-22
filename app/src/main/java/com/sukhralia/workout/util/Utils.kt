@@ -9,6 +9,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 fun String.convertToNumberedPoints(): String {
     val lines = this.trimIndent().lines()
@@ -48,3 +51,7 @@ fun Modifier.debouncedClickable(
     }
 }
 
+fun formatDateTime(date: Date): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+    return formatter.format(date)
+}

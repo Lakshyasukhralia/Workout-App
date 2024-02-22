@@ -1,4 +1,4 @@
-package com.sukhralia.workout.feature.workout.data.dto
+package com.sukhralia.workout.feature.workout.data.remote.dto
 
 import kotlinx.serialization.Serializable
 

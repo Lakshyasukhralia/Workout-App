@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.12"
     kotlin("plugin.serialization") version "1.9.0"
 }
 
@@ -12,7 +13,7 @@ android {
         applicationId = "com.sukhralia.workout"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -101,4 +102,12 @@ dependencies {
     //Datastore
     val datastoreVersion = "1.0.0"
     implementation("androidx.datastore:datastore-preferences:$datastoreVersion")
+
+
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
 }

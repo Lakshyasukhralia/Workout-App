@@ -1,13 +1,14 @@
-package com.sukhralia.workout.feature.workout.data.dto
+package com.sukhralia.workout.feature.workout.data.remote.dto
 
-import com.sukhralia.workout.feature.workout.data.api.WorkoutApi
+import com.sukhralia.workout.feature.workout.data.remote.api.WorkoutApi
 import com.sukhralia.workout.feature.workout.domain.model.Exercise
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ExerciseDto(
     val id: String? = null,
-    val categoryId: String? = null,
+    @SerialName("workout_id") val workoutId: String? = null,
     val name: String? = null,
     val description: String? = null,
     val images: List<String>? = null,
@@ -21,7 +22,8 @@ fun ExerciseDto.toExercise() = Exercise(
     name,
     description,
     images?.map { "${WorkoutApi.photoPath}/api/files/$collectionId/$id/$it" },
-    categoryId,
+    workoutId,
     instruction,
-    note
+    note,
+    "${WorkoutApi.photoPath}/api/files/$collectionId/$id/${images?.getOrNull(0)}"
 )

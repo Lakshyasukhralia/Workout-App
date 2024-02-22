@@ -1,6 +1,7 @@
 package com.sukhralia.workout
 
 import android.app.Application
+import com.sukhralia.workout.core.di.databaseModule
 import com.sukhralia.workout.core.di.networkModule
 import com.sukhralia.workout.feature.workout.di.workoutModule
 import org.koin.android.ext.koin.androidContext
@@ -14,6 +15,7 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 networkModule(),
+                databaseModule(),
                 workoutModule()
             )
         }

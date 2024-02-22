@@ -1,8 +1,8 @@
-package com.sukhralia.workout.feature.workout.data.api
+package com.sukhralia.workout.feature.workout.data.remote.api
 
 import com.sukhralia.workout.core.network.helper.handleErrors
-import com.sukhralia.workout.feature.workout.data.dto.ExerciseResponseDto
-import com.sukhralia.workout.feature.workout.data.dto.WorkoutResponseDto
+import com.sukhralia.workout.feature.workout.data.remote.dto.ExerciseResponseDto
+import com.sukhralia.workout.feature.workout.data.remote.dto.WorkoutResponseDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter

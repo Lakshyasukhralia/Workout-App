@@ -1,26 +1,23 @@
-package com.sukhralia.workout.feature.workout.presentation.setting.screen
+package com.sukhralia.workout.feature.workout.presentation.history.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -32,23 +29,24 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.sukhralia.workout.R
-import com.sukhralia.workout.feature.workout.presentation.setting.model.LocalTheme
+import com.sukhralia.workout.feature.workout.presentation.exercisedetail.screen.ExerciseDetailScreen
+import com.sukhralia.workout.feature.workout.presentation.exerciselisting.component.ExerciseItem
+import com.sukhralia.workout.feature.workout.presentation.history.component.HistoryCard
 import com.sukhralia.workout.navigation.BaseScreen
-import org.koin.core.component.KoinComponent
 
-class SettingScreen : BaseScreen(), KoinComponent {
-
+data class HistoryScreen(var isRefresh: Boolean = false) : BaseScreen() {
 
     @Preview
     @Composable
     override fun Content() {
 
         val navigator = LocalNavigator.currentOrThrow
-        val screenModel = rememberScreenModel { SettingScreenModel() }
+        val screenModel = rememberScreenModel { HistoryScreenModel() }
         val uiState by screenModel.uiState.collectAsState()
 
-        var darkMode by remember { mutableStateOf(uiState.isDarkMode) }
-        LocalTheme.current.isDark.value = darkMode
+        LaunchedEffect(Unit) {
+            screenModel.getExerciseHistory()
+        }
 
         Column(
             Modifier
@@ -62,33 +60,15 @@ class SettingScreen : BaseScreen(), KoinComponent {
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
-                text = stringResource(R.string.setting_title),
+                text = stringResource(R.string.workout_history_title),
                 style = MaterialTheme.typography.titleLarge.copy(fontSize = 32.sp),
                 modifier = Modifier.fillMaxWidth()
             )
-
             Spacer(modifier = Modifier.height(18.dp))
-
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = stringResource(R.string.dark_mode),
-                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 22.sp),
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Switch(
-                    colors = SwitchDefaults.colors(
-                        checkedBorderColor = MaterialTheme.colorScheme.onPrimary,
-                        uncheckedBorderColor = MaterialTheme.colorScheme.onPrimary,
-                        checkedTrackColor = MaterialTheme.colorScheme.inversePrimary,
-                        uncheckedTrackColor = MaterialTheme.colorScheme.inversePrimary
-                    ),
-                    checked = uiState.isDarkMode,
-                    onCheckedChange = {
-                        darkMode = it
-                        uiState.isDarkMode = darkMode
-                        screenModel.saveDarkModePreference(darkMode)
-                    }
-                )
+            LazyColumn(Modifier.fillMaxSize()) {
+                items(uiState.exercises) { exercise ->
+                    HistoryCard(exercise) { }
+                }
             }
         }
 
@@ -100,9 +80,9 @@ class SettingScreen : BaseScreen(), KoinComponent {
                         .size(75.dp),
                     color = MaterialTheme.colorScheme.onPrimary,
                 )
-            } else if (uiState.error.isNotEmpty())
+            } else if (uiState.exercises.isEmpty())
                 Text(
-                    text = stringResource(id = R.string.error),
+                    text = stringResource(id = R.string.no_history),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyLarge.copy(fontSize = 32.sp),
                     modifier = Modifier
@@ -111,4 +91,5 @@ class SettingScreen : BaseScreen(), KoinComponent {
                 )
         }
     }
+
 }

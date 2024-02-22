@@ -2,7 +2,7 @@ package com.sukhralia.workout.feature.workout.di
 
 import com.sukhralia.workout.core.persistence.preference.PreferenceRepository
 import com.sukhralia.workout.core.persistence.preference.PreferenceRepositoryImpl
-import com.sukhralia.workout.feature.workout.data.api.WorkoutApi
+import com.sukhralia.workout.feature.workout.data.remote.api.WorkoutApi
 import com.sukhralia.workout.feature.workout.data.repository.WorkoutRepositoryImpl
 import com.sukhralia.workout.feature.workout.domain.repository.WorkoutRepository
 import org.koin.core.module.Module
