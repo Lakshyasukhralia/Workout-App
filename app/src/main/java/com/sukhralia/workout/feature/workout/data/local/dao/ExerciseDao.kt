@@ -8,7 +8,7 @@ import com.sukhralia.workout.feature.workout.data.local.entity.ExerciseEntity
 
 @Dao
 interface ExerciseDao {
-    @Query("SELECT * FROM workout_historyA")
+    @Query("SELECT * FROM workout_history ORDER BY create_date DESC")
     fun getAll(): List<ExerciseEntity>
 
     @Insert
