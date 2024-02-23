@@ -1,4 +1,4 @@
-package com.sukhralia.workout.navigation
+package com.sukhralia.workout.navigation.tab
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

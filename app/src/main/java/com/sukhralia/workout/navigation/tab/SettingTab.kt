@@ -1,7 +1,7 @@
-package com.sukhralia.workout.navigation
+package com.sukhralia.workout.navigation.tab
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -11,14 +11,14 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.sukhralia.workout.R
-import com.sukhralia.workout.feature.workout.presentation.history.screen.HistoryScreen
+import com.sukhralia.workout.feature.workout.presentation.setting.screen.SettingScreen
 
-object HistoryTab : Tab {
+object SettingTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = stringResource(R.string.history)
-            val icon = rememberVectorPainter(Icons.Default.DateRange)
+            val title = stringResource(R.string.setting)
+            val icon = rememberVectorPainter(Icons.Default.Settings)
 
             return remember {
                 TabOptions(
@@ -31,7 +31,7 @@ object HistoryTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(HistoryScreen()) { navigator ->
+        Navigator(SettingScreen()) { navigator ->
             SlideTransition(navigator)
         }
     }

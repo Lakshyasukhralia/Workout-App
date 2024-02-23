@@ -17,7 +17,8 @@ data class ExerciseEntity(
     @ColumnInfo(name = "demo_img") val demoImg: String? = null,
     @ColumnInfo(name = "create_date") val createDate: Date = Date(),
     @ColumnInfo(name = "wgt") val wgt: Int = 0,
-    @ColumnInfo(name = "reps") val reps: Int = 0
+    @ColumnInfo(name = "reps") val reps: Int = 0,
+    @ColumnInfo(name = "demo_video") val demoVideo: String? = null,
 ) : java.io.Serializable
 
 fun ExerciseEntity.toExercise() = Exercise(
@@ -29,6 +30,7 @@ fun ExerciseEntity.toExercise() = Exercise(
     demoImg = demoImg,
     createDate = createDate,
     wgt = wgt,
-    reps = reps
+    reps = reps,
+    demoVideo = demoVideo
 )
 

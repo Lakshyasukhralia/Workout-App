@@ -15,6 +15,7 @@ data class ExerciseDto(
     val collectionId: String? = null,
     val instruction: String? = null,
     val note: String? = null,
+    @SerialName("demo_video") val demoVideo: String? = null,
 )
 
 fun ExerciseDto.toExercise() = Exercise(
@@ -25,5 +26,6 @@ fun ExerciseDto.toExercise() = Exercise(
     workoutId,
     instruction,
     note,
-    "${WorkoutApi.photoPath}/api/files/$collectionId/$id/${images?.getOrNull(0)}"
+    "${WorkoutApi.photoPath}/api/files/$collectionId/$id/${images?.getOrNull(0)}",
+    demoVideo = "${WorkoutApi.photoPath}/api/files/$collectionId/$id/${demoVideo}"
 )

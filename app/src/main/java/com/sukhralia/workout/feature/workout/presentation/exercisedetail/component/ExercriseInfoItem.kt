@@ -20,21 +20,21 @@ import androidx.compose.ui.unit.dp
 import com.sukhralia.workout.R
 
 @Composable
-fun ExerciseInfoItem(
+fun ExerciseTrackerItem(
     modifier: Modifier = Modifier,
     onField1Change: (String) -> Unit = {},
     onField2Change: (String) -> Unit = {}
 ) {
     Card(
-        elevation = CardDefaults.cardElevation(16.dp),
-        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+        shape = RoundedCornerShape(12.dp),
         modifier = modifier.fillMaxWidth(),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.onPrimary)
-                .padding(18.dp),
+                .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -44,7 +44,7 @@ fun ExerciseInfoItem(
                 maxChar = 3,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.5.dp, MaterialTheme.colorScheme.inversePrimary, RoundedCornerShape(16.dp))
+                    .border(1.5.dp, MaterialTheme.colorScheme.inversePrimary, RoundedCornerShape(4.dp))
                     .weight(.4f),
                 onValueChange = {
                     onField1Change.invoke(it)
@@ -56,7 +56,7 @@ fun ExerciseInfoItem(
                 maxChar = 3,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.5.dp, MaterialTheme.colorScheme.inversePrimary, RoundedCornerShape(16.dp))
+                    .border(1.5.dp, MaterialTheme.colorScheme.inversePrimary, RoundedCornerShape(4.dp))
                     .weight(.4f),
                 onValueChange = {
                     onField2Change.invoke(it)

@@ -14,7 +14,9 @@ val databaseModule: () -> Module
                 Room.databaseBuilder(
                     androidApplication(),
                     Database::class.java, "fitmunk_db"
-                ).build()
+                )
+                    .addMigrations(*Database.activeMigrations)
+                    .build()
             }
             single<ExerciseDao> {
                 val database = get<Database>()

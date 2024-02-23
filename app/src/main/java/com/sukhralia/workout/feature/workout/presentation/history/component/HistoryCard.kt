@@ -21,17 +21,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.ImageLoader
 import coil.compose.AsyncImage
+import coil.decode.VideoFrameDecoder
 import com.sukhralia.workout.feature.workout.domain.model.Exercise
 import com.sukhralia.workout.util.formatDateTime
 import java.util.Date
 
 @Composable
 fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
+
+    val imageLoader = ImageLoader.Builder(LocalContext.current)
+        .components {
+            add(VideoFrameDecoder.Factory())
+        }
+        .crossfade(true)
+        .build()
+
     Column(
         Modifier
             .fillMaxSize()
@@ -43,7 +54,8 @@ fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
         ) {
             Box(Modifier.weight(2f)) {
                 AsyncImage(
-                    exercise.demoImg ?: "https://picsum.photos/500/500",
+                    model = exercise.demoVideo,
+                    imageLoader = imageLoader,
                     contentDescription = "",
                     modifier = Modifier
                         .aspectRatio(1f)
@@ -56,7 +68,7 @@ fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
                     contentScale = ContentScale.FillBounds
                 )
             }
-            Spacer(modifier = Modifier.width(18.dp))
+            Spacer(modifier = Modifier.width(4.dp))
             Column(
                 Modifier
                     .align(Alignment.Top)
@@ -72,7 +84,7 @@ fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = "${exercise.wgt} kg",
-                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 22.sp),
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 18.sp),
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -80,13 +92,13 @@ fun HistoryCard(exercise: Exercise, onClick: () -> Unit) {
                     Spacer(
                         modifier = Modifier
                             .height(24.dp)
-                            .width(2.dp)
+                            .width(1.5.dp)
                             .background(MaterialTheme.colorScheme.onPrimary)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = "${exercise.reps} reps",
-                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 22.sp),
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 18.sp),
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )

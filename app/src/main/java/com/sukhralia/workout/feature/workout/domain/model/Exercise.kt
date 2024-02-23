@@ -14,7 +14,8 @@ data class Exercise(
     val demoImg: String? = null,
     val createDate: Date? = null,
     var wgt: Int = 0,
-    var reps: Int = 0
+    var reps: Int = 0,
+    val demoVideo: String? = null,
 ) : java.io.Serializable
 
 fun Exercise.toExerciseEntity() = ExerciseEntity(
@@ -25,5 +26,6 @@ fun Exercise.toExerciseEntity() = ExerciseEntity(
     instruction = instruction,
     demoImg = demoImg,
     wgt = wgt,
-    reps = reps
+    reps = reps,
+    demoVideo = demoVideo
 )

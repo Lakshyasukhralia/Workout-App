@@ -25,10 +25,10 @@ import com.sukhralia.workout.core.persistence.preference.PreferenceKeys.IS_DARK_
 import com.sukhralia.workout.core.persistence.preference.PreferenceRepository
 import com.sukhralia.workout.feature.workout.presentation.setting.model.DarkTheme
 import com.sukhralia.workout.feature.workout.presentation.setting.model.LocalTheme
-import com.sukhralia.workout.navigation.HistoryTab
-import com.sukhralia.workout.navigation.SettingTab
+import com.sukhralia.workout.navigation.tab.HistoryTab
+import com.sukhralia.workout.navigation.tab.SettingTab
 import com.sukhralia.workout.navigation.TabNavigationItem
-import com.sukhralia.workout.navigation.WorkoutTab
+import com.sukhralia.workout.navigation.tab.WorkoutTab
 import com.sukhralia.workout.ui.theme.WorkoutTheme
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
@@ -53,7 +53,8 @@ class MainActivity : ComponentActivity(), KoinComponent {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        TabNavigator(WorkoutTab,
+                        TabNavigator(
+                            WorkoutTab,
                             tabDisposable = {
                                 TabDisposable(
                                     navigator = it,
