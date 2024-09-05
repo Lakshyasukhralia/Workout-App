@@ -3,6 +3,8 @@ Fitmunk, the revolutionary fitness app that transforms your workout experience. 
 
 <div align="center">
 <img src ="https://github.com/Lakshyasukhralia/Workout-App/blob/master/Screenshot_20240220_010648.png" width="250" height="550">
+<img src ="https://github.com/Lakshyasukhralia/Workout-App/blob/master/Screenshot_20240220_010739.png" width="250" height="550">
+<img src ="https://github.com/Lakshyasukhralia/Workout-App/blob/master/Screenshot_20240220_010802.png" width="250" height="550">
 </div>
 
 ## Features
