@@ -1,7 +1,9 @@
 # Fitmunk - Workout & Exercise
 Fitmunk, the revolutionary fitness app that transforms your workout experience. With a focus on personalization, expert guidance, and convenience, Fitmunk is here to elevate your fitness journey to new heights.
 
-![App Screenshot](https://github.com/Lakshyasukhralia/Workout-App/blob/master/Screenshot_20240220_010648.png)
+<div align="center">
+<img src ="https://github.com/Lakshyasukhralia/Workout-App/blob/master/Screenshot_20240220_010648.png" width="400" height="1000">
+</div>
 
 ## Features
 #### Tailored Workouts:
